@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&family=Noto+Sans&family=Raleway&family=Roboto+Mono&display=swap');
+
+body {
+  height: 100vh;
+  width: 100vw;
+  max-height: 100vh;
+  max-width: 100vh;
+}
+
+body *{
+  font-family: 'Noto Sans', sans-serif;
+}
+
+
+
+.page-enter {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}

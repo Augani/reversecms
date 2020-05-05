@@ -1,0 +1,15 @@
+.leftHook{
+    background-image: url('../images/apple-computer-decor-design-326502.jpg');
+    background-size: cover;
+    position: relative;
+}
+
+.leftHookCover{
+    background-color: rgba(6, 22, 46, 0.9);
+    z-index: 1;
+
+}
+
+.leftHeading{
+    z-index: 5;
+}
