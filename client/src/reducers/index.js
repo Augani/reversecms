@@ -6,9 +6,7 @@ const INITIAL_STATE = {
     USER: {},
     THEME: "light",
     user:localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo'))[0]:{},
-    PROFILE:{
-      fullName: 'Augustus Otu'
-    }
+    PROFILE:localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo'))[0]:{},
 };
 
 const Reducer = (state = INITIAL_STATE,action)=>{

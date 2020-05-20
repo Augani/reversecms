@@ -7,11 +7,22 @@ import Store from './store'
 import { Provider } from 'react-redux'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+
+const client = new ApolloClient({
+  uri: '/api/',
+});
 
 const Wrapper = function () {
   return (
     <Provider store={Store}>
-      <App />
+     <ApolloProvider client={client}>
+     <App />
+     </ApolloProvider>
+    
     </Provider>
   )
 }

@@ -13,15 +13,23 @@
   "author": "Augustus Otu",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^5.2.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
+    "express-graphql": "^0.9.0",
+    "extract-zip": "^2.0.0",
+    "graphql": "^15.0.0",
+    "graphql-upload": "^10.0.0",
     "mongoose": "^5.9.12",
+    "multer": "^1.4.2",
     "nodemailer": "^6.4.6",
     "nodemailer-sendgrid-transport": "^0.2.0",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "unzipper": "^0.10.11"
   }
 }

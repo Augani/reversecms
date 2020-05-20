@@ -1,5 +1,5 @@
 .sid{
-    width: 5%;
+    width: 7%;
 }
 
 .navBar{
@@ -9,14 +9,120 @@
 
 .roP{
     width: 10%;
+    background-color: #213653;
     box-shadow: 0 0 1px rgba(67, 90, 111, 0.3), 0 8px 10px -4px rgba(67, 90, 111, 0.47)
 }
 
-svg{
-    transition: all .2s ease-in;
+.roP span{
+    font-size: 1.2rem;
+    font-weight: 600;
+    /* color: rgb(18, 60, 124); */
+    color: white;
 }
 
-.sid .active svg{
-    transform: scale(1.2);
+.cardOverLay{
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.siteCard{
+    height: 14rem;
+    width: 14rem;
+    border-radius: 4px;
+    display: flex;
+    background-image: url('https://picsum.photos/200/300');
+    background-size: cover;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+  
+    align-items: center;
+    transition: all .2s ease-in-out;
+}
+
+
+.mainCard{
+    height: 14rem;
+    width: 14rem;
+    border-radius: 4px;
+    display: flex;
+    position: relative;
+}
+
+.siteBack{
+   top: 0;
+   right: 0;
+   left: 0;
+   bottom: 0;
+    border-radius: 4px;
+    display: flex;
+    position: absolute;
+    transition: all .2s ease-in-out;
+}
+
+.siteBack svg{
+    width: 20px;
+    height: 20px;
+    color: #213653;
+    cursor: pointer;
+}
+
+.mainCard:hover .siteCard{
+    transform: translateY(50px);
+}
+
+.siteBack:hover{
+    /* animation-name: moveBack;
+    animation-duration: 1s;
+    animation-fill-mode: forwards; */
+}
+
+.siteCard:hover{
+    /* transform: rotateY(90deg); */
+    /* animation-name: moveBack;
+    animation-duration: 1s;
+    animation-fill-mode: forwards; */
     
+}
+
+@keyframes moveBack{
+    from{
+        transform: translateY(0px);
+        z-index: 3;
+    }
+
+   
+    to{
+        transform: translateY(0px);
+        z-index: 0;
+       
+    }
+}
+
+.siteCard svg{
+        color: #213653;
+        height: 20%;
+        width: 20%;
+}
+
+svg{
+    transition: all .4s ease-in;
+}
+.active{
+    position: relative;
+}
+.sid .active svg{
+    transform: scale(1.3);
+    position: relative;
+    
+}
+
+.active svg:after{
+    content: '';
+    position: absolute;
+    width: 100vw;
+    height: 1px;
+    left: 0;
+    display: block;
+    clear: both;
+    background-color: black;
 }
