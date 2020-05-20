@@ -11,11 +11,10 @@ class Database {
   }
 
   _connect () {
+    const Link = `mongodb${process.env.NODE_ENV === 'production' ? '+srv' : ''}://${server}/${database}`;
+    
     mongoose
-      .connect(
-        `mongodb${
-          process.env.NODE_ENV === 'production' ? '+srv' : ''
-        }://${server}/${database}`,
+      .connect(Link,
         { useNewUrlParser: true, useUnifiedTopology: true }
       )
       .then(() => {
