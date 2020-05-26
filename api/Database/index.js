@@ -9,6 +9,7 @@ class Database {
   constructor () {
     this._connect()
   }
+  
 
   _connect () {
     mongoose
