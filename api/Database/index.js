@@ -3,7 +3,8 @@ let mongoose = require('mongoose')
 const server =
   process.env.NODE_ENV === 'production'
     ? `${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-hvwmu.azure.mongodb.net`
-    : 'localhost:27017' // REPLACE WITH YOUR DB SERVER
+    : '${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-hvwmu.azure.mongodb.net'
+    // : 'localhost:27017' // REPLACE WITH YOUR DB SERVER
 const database = 'cms' // REPLACE WITH YOUR DB NAME
 class Database {
   constructor () {
