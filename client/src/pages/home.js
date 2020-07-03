@@ -21,27 +21,22 @@ class Home extends PureComponent {
     }
   }
   change = page => {
-
+    this.content(page.content)
     this.setState({
-      route: [page]
+      route: [page.page]
     })
    
   }
 
   content = g => {
+    console.log()
     this.setState({
       content: g
     })
   }
 
   renderContent = v => {
-    console.log(v)
-    switch (v) {
-      case 'Published':
-        return <HomeContent page='Published' />
-      case 'Drafts':
-        return <HomeContent page='Drafts' />
-    }
+    return <HomeContent page={v}/>
   }
 
   render () {
@@ -74,9 +69,11 @@ function Vnav (props) {
     from: { opacity: 0 }
   })
   const menus = menu => {
+    
+    if(Array.isArray(menu))menu=menu[0];
     switch (menu) {
       case 'home':
-        const mn = ['Published', 'Drafts']
+        let mn = ['Published', 'Drafts']
         return mn.map(p => (
           <animated.div style={lok}>
             <ListItem button name={p} onClick={() => props.content(p)}>
@@ -84,6 +81,17 @@ function Vnav (props) {
             </ListItem>
           </animated.div>
         ))
+      case 'users':
+        let vm = ['Accounts', 'Add user'];
+        return vm.map(p =>(
+          <animated.div style={lok}>
+          <ListItem button name={p} onClick={() => props.content(p)}>
+            <ListItemText primary={p} />
+          </ListItem>
+        </animated.div>
+        )
+
+        )
     }
   }
   return (
@@ -105,8 +113,6 @@ function Navs (props) {
 
   const changeActive = h => {
     setPage(h)
-
-   
     props.change({
       page: h,
       content: data[h]

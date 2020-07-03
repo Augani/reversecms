@@ -19,9 +19,13 @@
     /* color: rgb(18, 60, 124); */
     color: white;
 }
-
+.addIcon{
+    height: 30px !important;
+    width: 30px !important;
+    margin-right: 20px !important;
+}
 .cardOverLay{
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(233, 230, 243, 0.7);
 }
 
 .siteCard{
@@ -126,3 +130,29 @@ svg{
     clear: both;
     background-color: black;
 }
+
+.closeWeb{
+    height: 20px;
+    width: 20px;
+    margin: 10px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px !important;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #8a7c7c;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(11, 15, 39) !important;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

@@ -14,9 +14,31 @@ const FindUser = async function(username){
    
 }
 
+const updateUserSites = async function({email, siteUrl}){
+    return new Promise(async (resolve, reject)=>{
+        var user = await findByEmail(email);
+        user.sites.push(siteUrl);
+        let done = await user.save();
+        if(!done)return reject(done);
+        resolve(done);
+    })
+}
+
+const FindAllUsers = async function(){
+    return new Promise((resolve, reject)=>{
+        User.find({}, function(err,result){
+            if(err)return reject(err);
+            resolve(result);
+        })
+      })
+   
+}
+
 const findByEmail  = async email =>{
     return new Promise((resolve, reject)=>{
+        console.log(email)
         User.find({email}).exec(async function(err, doc){
+            console.log(doc)
             if(err || !doc.length)reject(0);
             resolve(doc[0]);
         })
@@ -41,4 +63,4 @@ const Login = function(user){
 
 
 
-module.exports = { FindUser, Login, findByEmail}
+module.exports = { FindUser, Login, findByEmail, FindAllUsers, updateUserSites}

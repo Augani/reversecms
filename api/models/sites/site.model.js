@@ -3,14 +3,17 @@ const Bcrypt = require('bcryptjs')
 const User = require('../users/user.model')
 let siteSchema = new mongoose.Schema(
   {
-    filename: {
+    siteUrl: {
       type: String,
-      unique: true
     },
     pagename:  {
       type: String,
+    },
+    ftpUrl:{
+      type: String,
       unique: true
     },
+    
     owner: Object,
 
   },

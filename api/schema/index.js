@@ -13,9 +13,10 @@ var schema = buildSchema(`
   }
 
   input siteInput {
-    filename: String
+    siteUrl: String
     pagename: String
-    owner: UserData
+    ftpUrl: String
+    username: String
   }
   type ownerData {
     id: String
@@ -24,8 +25,9 @@ var schema = buildSchema(`
 
   type SiteData {
     _id: String
-    filename: String
+    siteUrl: String
     pagename: String
+    ftpUrl: String
     owner: ownerData
   }
  
@@ -34,17 +36,23 @@ var schema = buildSchema(`
     _id: String
     username: String
     password: String
-    email: String
+    email: String,
+    userType: Int
+    sites: [String]
   }
 
   type Query {
     getUser(username: String): User
+    getAllUsers:[User]
+    getSitesByUser(username: String):[SiteData]
   }
 
   type Mutation {
     register(user: UserInput): User
     login(username: String, password: String): User
-    fileUpload(data: siteInput): SiteData
+    addSite(data: siteInput): SiteData
+    
+    
   }
 `);
 

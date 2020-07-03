@@ -38,3 +38,39 @@ export const UPLOAD_FILE = gql`
         }
     }
 `;
+
+export const ADD_SITE = gql`
+   
+    mutation upSite($siteUrl: String!, $pagename: String!, $username: String!, $ftpUrl: String){
+        addSite(data: {siteUrl: $siteUrl,pagename: $pagename, ftpUrl: $ftpUrl, username: $username}){
+            _id,
+            siteUrl,
+            pagename,
+        }
+    }
+`;
+
+export const GET_USERS = gql`
+        {
+            getAllUsers{
+                _id,
+                username,
+                password,
+                email,
+                userType,
+                sites
+            }
+        }
+`;
+
+
+export const GET_SITES_USER = gql`
+       query getSitesUser($username: String!){
+            getSitesByUser(username:$username){
+                _id,
+                siteUrl,
+                ftpUrl,
+                pagename
+        }
+    }
+`;

@@ -18,6 +18,14 @@ let userSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    userType:{
+      type: Number,
+      default: 0
+    },
+    sites: {
+      type: Array,
+      default: []
+    }
    
   },
   { timestamps: true }

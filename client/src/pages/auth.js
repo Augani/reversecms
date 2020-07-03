@@ -73,7 +73,7 @@ function LoginRT (props) {
           <div className='w-4/5 md:w-3/5 lg:w-2/5'>
             <form className='bg-white  rounded px-8 pt-6 pb-8 mb-4'>
               <h3 className='md:text-4xl text-2xl text-blue-900 text-center font-bold'>
-                Reverse CMS
+                Temtem Web
               </h3>
               <hr />
               <div className='mb-4 mt-6'>
@@ -181,7 +181,7 @@ function RegisterT (props) {
       <div className='w-4/5 md:w-2/5'>
         <form className='bg-white  rounded px-8 pt-6 pb-8 mb-4'>
           <h3 className='md:text-4xl text-2xl text-blue-900 text-center font-bold'>
-            Reverse CMS
+            Temtem Web
           </h3>
           <hr />
           <div className='mb-4 mt-6'>
