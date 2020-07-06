@@ -203,7 +203,7 @@ module.exports = ()=>{
 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Verdana, sans-serif"><![endif]-->
 <div style="color:#213653;font-family:'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Geneva, Verdana, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
 <div style="line-height: 1.2; font-size: 12px; font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Geneva, Verdana, sans-serif; color: #213653; mso-line-height-alt: 14px;">
-<p style="font-size: 14px; line-height: 1.2; text-align: center; font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Geneva, Verdana, sans-serif; word-break: break-word; mso-line-height-alt: 17px; margin: 0;"><strong>Welcome to nTemtem Web!</strong></p>
+<p style="font-size: 14px; line-height: 1.2; text-align: center; font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Geneva, Verdana, sans-serif; word-break: break-word; mso-line-height-alt: 17px; margin: 0;"><strong>Welcome to nTemtem Web	!</strong></p>
 </div>
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
