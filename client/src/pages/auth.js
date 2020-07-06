@@ -73,7 +73,7 @@ function LoginRT (props) {
           <div className='w-4/5 md:w-3/5 lg:w-2/5'>
             <form className='bg-white  rounded px-8 pt-6 pb-8 mb-4'>
               <h3 className='md:text-4xl text-2xl text-blue-900 text-center font-bold'>
-                Temtem Web
+                NTemtem Web
               </h3>
               <hr />
               <div className='mb-4 mt-6'>
@@ -81,16 +81,16 @@ function LoginRT (props) {
                   className='block text-blue-900 text-sm font-bold mb-2'
                   for='username'
                 >
-                  Username
+                  Email
                 </label>
                 <input
                   className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
-                  id='username'
-                  type='text'
+                  id='email'
+                  type='email'
                   onChange={onChange}
                   name="username"
                   value={values.username}
-                  placeholder='Username'
+                  placeholder='right@gmail.com'
                 />
               </div>
               <div className='mb-6'>

@@ -89,9 +89,16 @@ function Vnav (props) {
             <ListItemText primary={p} />
           </ListItem>
         </animated.div>
-        )
-
-        )
+        ))
+        case 'settings':
+          let om = ['Change Password'];
+          return om.map(p =>(
+            <animated.div style={lok}>
+            <ListItem button name={p} onClick={() => props.content(p)}>
+              <ListItemText primary={p} />
+            </ListItem>
+          </animated.div>
+          ))
     }
   }
   return (
@@ -108,7 +115,8 @@ function Navs (props) {
   let location = useLocation()
   const data = {
     home: 'Published',
-    users: 'Accounts'
+    users: 'Accounts',
+    settings: 'Change Password'
   }
 
   const changeActive = h => {

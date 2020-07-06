@@ -30,6 +30,11 @@ var schema = buildSchema(`
     ftpUrl: String
     owner: ownerData
   }
+
+  type siteEditable {
+    class: String
+    value: String
+  }
  
 
   type User {
@@ -41,10 +46,16 @@ var schema = buildSchema(`
     sites: [String]
   }
 
+  type siteSource{
+    tags: [siteEditable]
+    src: String
+  }
+
   type Query {
     getUser(username: String): User
     getAllUsers:[User]
     getSitesByUser(username: String):[SiteData]
+    getEditable(site: String): siteSource
   }
 
   type Mutation {

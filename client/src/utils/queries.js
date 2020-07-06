@@ -5,7 +5,8 @@ export const  LOGIN_SCRIPT = gql`
     login(username: $username, password: $password) {
       _id,
       username,
-      email
+      email,
+      userType
     }
   }
 `;
@@ -71,6 +72,18 @@ export const GET_SITES_USER = gql`
                 siteUrl,
                 ftpUrl,
                 pagename
+        }
+    }
+`;
+
+export const GET_EDITABLE = gql`
+       query getEditableContent($site: String!){
+            getEditable(site:$site){
+                tags {
+                    class
+                    value
+                  },
+                src
         }
     }
 `;

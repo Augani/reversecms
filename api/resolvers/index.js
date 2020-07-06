@@ -3,6 +3,7 @@ const {FindSitesBy} = require('../models/sites')
 const User  = require('../models/users/user.model');
 const Site = require('../models/sites/site.model');
 const SendEmail  = require('./sendEmail');
+const GetResults  = require('../scrape');
 const LoginUser = input => {
   return Login(input)
     .then(d => {
@@ -19,6 +20,14 @@ const getAllUsers = async ()=>{
   }).catch(e=>{
     return e
   })
+}
+
+
+const getEditable = async ({site})=>{
+  
+  const content = await GetResults(site);
+ 
+  return content;
 }
 
 const getUser = async ({username}) => {
@@ -74,7 +83,8 @@ var root = {
   register,
   getAllUsers,
   addSite,
-  getSitesByUser
+  getSitesByUser,
+  getEditable
 
 }
 

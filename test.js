@@ -1,4 +1,4 @@
-const getResults = require("./scrape");
+const getResults = require("./api/scrape");
 
 getResults("http://127.0.0.1:5500").then((r)=>{
     console.log(r)

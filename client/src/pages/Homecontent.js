@@ -1,16 +1,16 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import {Pane, Dialog, FilePicker, toaster} from 'evergreen-ui'
+import {Pane, Dialog, FilePicker, toaster, Spinner} from 'evergreen-ui'
 import User from './userData'
 import {useTransition, animated, useSpring} from 'react-spring'
 import {FiUpload, FiDelete, FiEdit, FiEye, FiSkipBack} from 'react-icons/fi'
 import {AiOutlineClose, AiOutlineFolderAdd} from 'react-icons/ai'
 import Component from '@reactions/component'
 import {withRouter, Link, Redirect} from 'react-router-dom'
-import Table from '../components/table'
+import Table from '../components/table';
+import $ from 'jquery';
 import axios from 'axios';
-import {UPLOAD_FILE} from '../utils/queries'
-import {LOGIN_SCRIPT, REGISTER_NEW_USER, GET_USERS, GET_SITES_USER, ADD_SITE} from '../utils/queries'
+import {LOGIN_SCRIPT, REGISTER_NEW_USER, GET_USERS, GET_SITES_USER, ADD_SITE, GET_EDITABLE} from '../utils/queries'
 import Cms from '../anim/17343-programming.json'
 import {useQuery, useMutation} from '@apollo/react-hooks'
 
@@ -46,6 +46,12 @@ const tableData = [
   }
 ];
 
+const calc = (x, y) => [ -(y - window.innerHeight / 3) / 30,
+  (x - window.innerWidth / 3) / 30,
+  1.1
+]
+const trans = (x, y, s) => `perspective(50px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+
 class Homecontent extends PureComponent {
   constructor(props) {
     super(props)
@@ -66,8 +72,8 @@ class Homecontent extends PureComponent {
         return <Users/>;
       case 'Add user':
         return <AddUsers/>;
-      case 'Settings':
-        return <Settings/>
+      case 'Change Password':
+        return <ChangePassword/>
     }
   }
 
@@ -85,14 +91,13 @@ class Homecontent extends PureComponent {
 }
 
 function Drafts() {
-  return <div>drafts</div>
+  return (
+    <div className="w-full h-full flex flex-col justify-center items-center">
+      <h5>No drafts found</h5>
+    </div>
+  )
 }
 
-const calc = (x, y) => [ -(y - window.innerHeight / 3) / 30,
-  (x - window.innerWidth / 3) / 30,
-  1.1
-]
-const trans = (x, y, s) => `perspective(50px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
 
 function TileR(prop) {
   const [addSite, {
@@ -100,6 +105,7 @@ function TileR(prop) {
       error
     }
   ] = useMutation(ADD_SITE);
+ 
   const [props,
     set] = useSpring(() => ({
     xys: [
@@ -111,6 +117,7 @@ function TileR(prop) {
       friction: 40
     }
   }))
+ 
 
   const [file,
     setFile] = React.useState(null);
@@ -136,8 +143,8 @@ function TileR(prop) {
     setSiteLink(d)
 
   }
-  const viewEdit = (d) => {
-
+  const viewEdit = async (d) => {
+ 
     setEdit(true);
     setSiteLink(d)
 
@@ -146,6 +153,10 @@ function TileR(prop) {
   React.useEffect(()=>{
       
   }, [update])
+
+  const deleteSite = ()=>{
+
+  }
 
   const uploadFile = (f) => {
     addSite({
@@ -157,24 +168,14 @@ function TileR(prop) {
       }
     }).then((response)=>{
         if(!response.data.addSite)return toaster.warning('Site wasn\'t added');
-        return toaster.success("Site added successfully");
         setUpdate(true)
+        return toaster.success("Site added successfully");
+        
     })
   }
 
   if (edit && siteLink) {
-    return (
-      <div className="w-full h-full flex flex-col items-end">
-        <AiOutlineClose className="closeWeb"/>
-        <div className="h-full w-full flex flex-row">
-          <div className="w-1/3 h-full flex flex-col items-center">
-            <h5>Edit Content</h5>
-          </div>
-          <iframe className="w-2/3 h-full" src={siteLink}></iframe>
-        </div>
-
-      </div>
-    )
+    return <EditReady siteLink={siteLink} site={siteLink} Close={()=>setEdit(false)} />
   }
 
   if (page && siteLink) {
@@ -207,7 +208,7 @@ function TileR(prop) {
               <Pane>
                 <Dialog
                   isShown={state.isShown}
-                  title='Upload site'
+                  title='Import site'
                   width={400}
                   onCloseComplete={() => setState({isShown: false, isLoading: false})}
                   isConfirmLoading={state.isLoading}
@@ -217,8 +218,8 @@ function TileR(prop) {
                   setState({isShown: false});
                 }}
                   confirmLabel={state.isLoading
-                  ? 'Adding...'
-                  : 'Add Site'}>
+                  ? 'Importing...'
+                  : 'Import'}>
                   <div className='w-full h-full flex flex-col justify-center'>
                     <div className='mb-4'>
                       <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
@@ -228,7 +229,7 @@ function TileR(prop) {
                         className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
                         id='siteName'
                         type='text'
-                        value={site}
+                        value={pagename}
                         onChange={val => setPageName(val.target.value)}
                         name="site"
                         placeholder='eg. HomeChow'/>
@@ -266,7 +267,7 @@ function TileR(prop) {
                   </div>
                 </Dialog>
                 <AiOutlineFolderAdd
-                  className="addIcon"
+                  className="addIcon cursor-pointer"
                   onClick={() => setState({isShown: true})}/>
 
               </Pane>
@@ -284,7 +285,7 @@ function TileR(prop) {
                 <Pane className="flex flex-row justify-around w-full my-4">
                   <FiEye onClick={() => viewSite(t.siteUrl)}/>
                   <FiEdit onClick={() => viewEdit(t.siteUrl)}/>
-                  <FiDelete/>
+                  <FiDelete onClick={()=>deleteSite(t.siteUrl)}/>
                 </Pane>
                 <Pane elevation={3} className='siteCard cursor-pointer'>
                   <div
@@ -303,6 +304,100 @@ function TileR(prop) {
     </div>
   )
 
+}
+
+function EditInput(props){
+    const [val,setVal] = React.useState(props.data.value)
+    const valChanged = (v)=>{
+        setVal(v)
+        debugger
+       $('#editableIframe').contents().find(`.${props.data.class}`).text(val)
+    }
+    if(props.data.value.length>30){
+      return (
+        <div className='mb-4'>
+        <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+         {props.data.class}
+        </label>
+        <textarea
+        style={{height: '200px'}}
+          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-4/5 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+          type='text'
+          value={val}
+          onChange={val => valChanged(val.target.value)}
+          name="url"
+          placeholder='eg. http://'/>
+    
+      </div>
+      )
+    }
+  return (
+    <div className='mb-4'>
+    <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+      {props.data.class}
+    </label>
+    <input
+      className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-4/5 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+      type='text'
+      value={val}
+      onChange={val => valChanged(val.target.value)}
+      name="url"
+      placeholder='eg. http://'/>
+
+  </div>
+  )
+}
+
+function EditReady(props){
+  const {data, loading, error} = useQuery(GET_EDITABLE, {
+    variables:{
+      site: props.site
+    }
+  });
+  if(loading) return (
+    <div className="w-full h-full flex flex-col justify-center items-center">
+      <Spinner/>
+    </div>
+  )
+  const filtered  = data.getEditable.tags.filter(o=>o.value);
+
+  return(
+    <div className="w-full h-full flex flex-col items-end">
+    <div class="flex flex-row justify-end">
+    <button
+              className='bg-blue-500 mr-3  mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+              type='button'
+            >
+              Save as draft
+            </button>
+    <button
+              className='bg-green-500 mr-3  mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+              type='button'
+            >
+              Publish
+            </button>
+            <button
+            onClick={props.Close}
+              className='bg-red-500  mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+              type='button'
+            >
+              Exit
+            </button>
+  
+    </div>
+    <div className="h-full w-full flex flex-row">
+      <div className="w-1/3 h-full flex flex-col items-center">
+        <h5>Edit Content</h5>
+        <div className=" overflow-y-scroll w-full h-full flex flex-col">
+          {filtered.map((item)=>(<EditInput data={item}/>))}
+        </div>
+      </div>
+      <iframe id="editableIframe" className="w-2/3 h-full" srcDoc={data.getEditable.src}></iframe>
+    </div>
+
+  </div>
+
+  )
 }
 
 function PublishedR(Props) {
@@ -433,20 +528,83 @@ function Users() {
   )
 }
 
+function ChangePassword(){
+  const [values,
+    setValues] = React.useState({oldPassword: '', newPassword: '', confirmNewPassword: ''})
+  const onChange = e => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const Change = ()=>{
+
+  }
+  return (
+    <div className="h-full w-full flex flex-col justify-center items-center">
+ <form className='bg-white w-1/3  rounded px-8 pt-6 pb-8 mb-4'>
+
+<div className='mb-4 mt-6'>
+  <label className='block text-blue-900 text-sm font-bold mb-2' for='username'>
+   Old Password
+  </label>
+  <input
+    className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+    id='username'
+    value={values.oldPassword}
+    onChange={onChange}
+    name="username"
+    type='password'
+    placeholder='******************'/>
+</div>
+<div className='mb-4'>
+  <label className='block text-blue-900 text-sm font-bold mb-2' for='username'>
+    New Password
+  </label>
+  <input
+    className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+    id='email'
+    value={values.newPassword}
+    onChange={onChange}
+    name="email"
+    type='password'
+    placeholder='******************'/>
+</div>
+<div className='mb-6'>
+  <label className='block text-blue-900 text-sm font-bold mb-2' for='password'>
+    Confirm New Password
+  </label>
+  <input
+    className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+    id='password'
+    value={values.confirmNewPassword}
+    onChange={onChange}
+    type='password'
+    name="confirmPassword"
+    placeholder='******************'/>
+
+</div>
+<div className='flex flex-col items-center justify-between'>
+  <button
+    className='bg-blue-900 w-full mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+    type='button'
+    onClick={Change}>
+   Change Password
+  </button>
+
+</div>
+</form>
+    </div>
+  )
+}
+
 function Settings() {
-  const data = [
-    {
-      title: 'New Site',
-      id: 200
-    }, {
-      title: 'Old site',
-      id: 300
-    }
-  ]
+ 
 
   return (
     <div className='h-full w-full p-10'>
-      <Tile data={data}/>
+     
     </div>
   )
 }
