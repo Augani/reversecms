@@ -39,7 +39,7 @@ var upload = multer({ storage: storage })
 
 app.post('/uploadFile', upload.single('sampleFile'), async (req, res, next) => {
   const thePath = 'sites/local/' + req.body.username+"/"+req.body.pagename;
-  console.log(thePath)
+  
   const file = req.file
   if (!file) {
     const error = new Error('Please upload a file')

@@ -10,6 +10,7 @@ import {LOGIN_SCRIPT, REGISTER_NEW_USER} from '../utils/queries'
 import Cms from '../anim/17343-programming.json'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { LoginUser } from '../actions'
+import Logo from '../images/logo.png'
 
 function LoginRT (props) {
   const [loginRun] = useMutation(LOGIN_SCRIPT);
@@ -71,19 +72,20 @@ function LoginRT (props) {
         <div className='w-full flex flex-col justify-center items-center'>
           <div className='w-4/5 md:w-3/5 lg:w-2/5'>
             <form className='bg-white  rounded px-8 pt-6 pb-8 mb-4'>
-              <h3 className='md:text-4xl text-2xl text-blue-900 text-center font-bold'>
-                Tentem Web
+              <h3 className='md:text-4xl text-2xl  text-center font-bold'>
+                {/* Tentem Web */}
+                <img src={Logo}/>
               </h3>
               <hr />
               <div className='mb-4 mt-6'>
                 <label
-                  className='block text-blue-900 text-sm font-bold mb-2'
+                  className='block  text-sm font-bold mb-2'
                   for='username'
                 >
                   Email
                 </label>
                 <input
-                  className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+                  className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
                   id='email'
                   type='email'
                   onChange={onChange}
@@ -94,13 +96,13 @@ function LoginRT (props) {
               </div>
               <div className='mb-6'>
                 <label
-                  className='block text-blue-900 text-sm font-bold mb-2'
+                  className='block  text-sm font-bold mb-2'
                   for='password'
                 >
                   Password
                 </label>
                 <input
-                  className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+                  className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
                   id='password'
                   value={values.password}
                   onChange={onChange}
@@ -112,20 +114,20 @@ function LoginRT (props) {
               <div className='flex flex-col items-center justify-between'>
                 <button
                 onClick={Login}
-                  className='bg-blue-900 w-full mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                  className='bb0 w-full mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
                   type='button'
                 >
                   Sign In
                 </button>
                 <a
-                  className='inline-block align-baseline mb-4 font-bold text-sm text-blue-900 hover:text-blue-800'
+                  className='inline-block align-baseline mb-4 font-bold text-sm text-red-700  hover:text-gray-900'
                   href='/forgot'
                 >
                   Forgot Password?
                 </a>
-                <p className='text-center text-gray-500'>
+                <p className='text-center text-gray-900'>
                   Don't have an account? <br className="md:hidden"/>
-                  <Link className='text-gray-700' to='/signup'>
+                  <Link className='text-red-700' to='/signup'>
                     Create One
                   </Link>
                 </p>
@@ -179,19 +181,19 @@ function RegisterT (props) {
     <div className='w-full flex flex-col justify-center items-center'>
       <div className='w-4/5 md:w-2/5'>
         <form className='bg-white  rounded px-8 pt-6 pb-8 mb-4'>
-          <h3 className='md:text-4xl text-2xl text-blue-900 text-center font-bold'>
-            Tentem Web
+          <h3 className='md:text-4xl text-2xl  text-center font-bold'>
+          <img src={Logo}/>
           </h3>
           <hr />
           <div className='mb-4 mt-6'>
             <label
-              className='block text-blue-900 text-sm font-bold mb-2'
+              className='block  text-sm font-bold mb-2'
               for='username'
             >
               Username
             </label>
             <input
-              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
               id='username'
               value={values.username}
               onChange={onChange}
@@ -202,13 +204,13 @@ function RegisterT (props) {
           </div>
           <div className='mb-4'>
             <label
-              className='block text-blue-900 text-sm font-bold mb-2'
+              className='block  text-sm font-bold mb-2'
               for='username'
             >
               Email
             </label>
             <input
-              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
               id='email'
               value={values.email}
               onChange={onChange}
@@ -219,13 +221,13 @@ function RegisterT (props) {
           </div>
           <div className='mb-4'>
             <label
-              className='block text-blue-900 text-sm font-bold mb-2'
+              className='block  text-sm font-bold mb-2'
               for='password'
             >
               Password
             </label>
             <input
-              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
               id='password'
               type='password'
               value={values.password}
@@ -237,13 +239,13 @@ function RegisterT (props) {
           </div>
           <div className='mb-6'>
             <label
-              className='block text-blue-900 text-sm font-bold mb-2'
+              className='block  text-sm font-bold mb-2'
               for='password'
             >
               Confirm Password
             </label>
             <input
-              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
               id='password'
               value={values.confirmPassword}
               onChange={onChange}
@@ -255,16 +257,16 @@ function RegisterT (props) {
           </div>
           <div className='flex flex-col items-center justify-between'>
             <button
-              className='bg-blue-900 w-full mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+              className='bb0 w-full mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
               type='button'
               onClick={Register}
             >
               Create account
             </button>
 
-            <p className='text-center text-gray-500'>
+            <p className='text-center text-gray-900'>
               Already a member?<br className="md:hidden"/>
-              <Link className='text-gray-700' to='/'>
+              <Link className='text-red-700' to='/'>
                 Sign In
               </Link>
             </p>
@@ -287,19 +289,19 @@ function Forgot (props) {
     <div className='w-full h-full flex flex-col justify-center items-center'>
       <div className='w-4/5 md:w-3/5 lg:w-1/4'>
         <form className='bg-white  rounded px-8 pt-6 pb-8 mb-4'>
-          <h2 className='text-center text-blue-900 md:text-4xl text-xl font-bold'>
+          <h2 className='text-center  md:text-4xl text-xl font-bold'>
             Recover Password
           </h2>
           <hr />
           <div className='mb-4 mt-6'>
             <label
-              className='block text-blue-900 text-sm font-bold mb-2'
+              className='block  text-sm font-bold mb-2'
               for='username'
             >
               Email
             </label>
             <input
-              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
               id='emailForgot'
               type='email'
               placeholder='Your Email'
