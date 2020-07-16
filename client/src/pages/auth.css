@@ -5,11 +5,23 @@
 }
 
 .leftHookCover{
-    background-color: rgba(6, 22, 46, 0.9);
+    background-color: rgba(190, 30, 45, 0.8);
     z-index: 1;
 
 }
 
 .leftHeading{
     z-index: 5;
+}
+
+.bb0{
+    background-color: #be1e2d;
+}
+
+label{
+    color: #be1e2d !important;
+}
+
+input{
+    color: #be1e2d !important;
 }

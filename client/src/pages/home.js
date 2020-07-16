@@ -46,7 +46,7 @@ class Home extends PureComponent {
       <div className='w-screen h-screen flex flex-col md:flex-row '>
         <Pane
           elevation={4}
-          className='sid h-full  bg-blue-900 hidden md:flex flex-col pt-20'
+          className='sid h-full  hidden md:flex flex-col pt-20'
         >
           <Navs route={this.state.route} logout={this.props.LogoutUser} change={this.change} />
         </Pane>

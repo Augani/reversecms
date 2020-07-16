@@ -108,7 +108,7 @@ class Homecontent extends PureComponent {
     return (
       <div className='h-full w-full flex flex-col'>
         <Pane className='w-full h-16 shadow-sm p-3 flex flex-row justify-between'>
-          <h5 className='text-xl font-bold text-blue-900'>{this.props.page}</h5>
+          <h5 className='text-xl font-bold text-red-700'>{this.props.page}</h5>
           <User/>
         </Pane>
         {this.renderPage(this.props.page)}
@@ -132,11 +132,11 @@ function ProfileViewL(props) {
       <form className='bg-white w-1/4  rounded  pb-8 mb-4'>
        
         <div className='mb-4 mt-6'>
-          <label className='block text-blue-900 text-sm font-bold mb-2' for='username'>
+          <label className='block text-red-700 text-sm font-bold mb-2' for='username'>
             Username
           </label>
           <input
-            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
             id='username'
             value={values.username}
             onChange={onChange}
@@ -146,11 +146,11 @@ function ProfileViewL(props) {
             placeholder='Username'/>
         </div>
         <div className='mb-4'>
-          <label className='block text-blue-900 text-sm font-bold mb-2' for='username'>
+          <label className='block text-red-700 text-sm font-bold mb-2' for='username'>
             Email
           </label>
           <input
-            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
             id='email'
             value={values.email}
             onChange={onChange}
@@ -305,7 +305,7 @@ function TileR(prop) {
       <div className="w-full h-full flex flex-col items-end">
         <button
           onClick={Close}
-          className='bg-red-500  mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-red-500  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
           type='button'>
           Close
         </button>
@@ -352,11 +352,11 @@ function TileR(prop) {
                       : 'Import'}>
                       <div className='w-full h-full flex flex-col justify-center'>
                         <div className='mb-4'>
-                          <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+                          <label className='block text-red-700 text-sm font-bold mb-2' for='siteName'>
                             Site name / Alias
                           </label>
                           <input
-                            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+                            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
                             id='siteName'
                             type='text'
                             value={pagename}
@@ -366,11 +366,11 @@ function TileR(prop) {
 
                         </div>
                         <div className='mb-4'>
-                          <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+                          <label className='block text-red-700 text-sm font-bold mb-2' for='siteName'>
                             Site Url
                           </label>
                           <input
-                            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+                            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
                             id='siteUrl'
                             type='text'
                             value={url}
@@ -380,11 +380,11 @@ function TileR(prop) {
 
                         </div>
                         <div className='mb-4'>
-                          <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+                          <label className='block text-red-700 text-sm font-bold mb-2' for='siteName'>
                             FTP Url
                           </label>
                           <input
-                            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+                            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
                             id='ftpUrl'
                             type='text'
                             value={ftp}
@@ -394,11 +394,11 @@ function TileR(prop) {
 
                         </div>
                         <div className='mb-4'>
-                          <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+                          <label className='block text-red-700 text-sm font-bold mb-2' for='siteName'>
                             FTP Username
                           </label>
                           <input
-                            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+                            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
                             id='ftpUrl'
                             type='text'
                             value={ftpUsername}
@@ -408,11 +408,11 @@ function TileR(prop) {
 
                         </div>
                         <div className='mb-4'>
-                          <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+                          <label className='block text-red-700 text-sm font-bold mb-2' for='siteName'>
                             FTP Password
                           </label>
                           <input
-                            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+                            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
                             id='ftpUrl'
                             type='text'
                             value={ftpPassword}
@@ -504,7 +504,7 @@ function TileR(prop) {
                   <div
                     className="h-full w-full flex flex-col justify-center cardOverLay items-center">
 
-                    <h6 className='text-blue-900 text-3xl font-semibold'>{t.pagename}</h6>
+                    <h6 className='text-red-700 text-3xl font-semibold'>{t.pagename}</h6>
                   </div>
                 </Pane>
 
@@ -533,14 +533,14 @@ function EditInput(props) {
   if (props.data.value.length > 30) {
     return (
       <div className='mb-4'>
-        <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+        <label className='block text-red-700 text-sm font-bold mb-2' for='siteName'>
           {props.data.class}
         </label>
         <textarea
           style={{
           height: '200px'
         }}
-          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-4/5 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-4/5 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
           type='text'
           value={val}
           onChange={val => valChanged(val.target.value)}
@@ -552,11 +552,11 @@ function EditInput(props) {
   }
   return (
     <div className='mb-4'>
-      <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+      <label className='block text-red-700 text-sm font-bold mb-2' for='siteName'>
         {props.data.class}
       </label>
       <input
-        className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-4/5 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+        className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-4/5 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
         type='text'
         value={val}
         onChange={val => valChanged(val.target.value)}
@@ -837,24 +837,24 @@ function EditReadyT(props) {
       <div class="flex flex-row justify-end">
       <button
         onClick={Undo}
-          className='bg-blue-500 mr-3  mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-red-500 mr-3  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
           type='button'>
           Undo
         </button>
         <button
-          className='bg-blue-500 mr-3  mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-red-500 mr-3  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
           type='button'>
           Save as draft
         </button>
         <button
           onClick={Publish}
-          className='bg-green-500 mr-3  mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-green-500 mr-3  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
           type='button'>
           Publish
         </button>
         <button
           onClick={props.Close}
-          className='bg-red-500  mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-red-500  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
           type='button'>
           Exit
         </button>
@@ -934,7 +934,7 @@ function Buttons(prop) {
   return (
     <button
       onClick={() => prop.set(prop.data)}
-      className='bg-green-500  mb-4 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline'
+      className='bg-green-500  mb-4 hover:bg-red-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline'
       type='button'>
       {prop
         .data
@@ -1029,11 +1029,11 @@ function Users() {
               <form className='bg-white  rounded px-8 pt-6 pb-8 mb-4'>
 
                 <div className='mb-4 mt-6'>
-                  <label className='block text-blue-900 text-sm font-bold mb-2' for='username'>
+                  <label className='block text-red-700 text-sm font-bold mb-2' for='username'>
                     Username
                   </label>
                   <input
-                    className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+                    className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
                     id='username'
                     value={values.username}
                     onChange={onChange}
@@ -1042,11 +1042,11 @@ function Users() {
                     placeholder='Username'/>
                 </div>
                 <div className='mb-4'>
-                  <label className='block text-blue-900 text-sm font-bold mb-2' for='username'>
+                  <label className='block text-red-700 text-sm font-bold mb-2' for='username'>
                     Email
                   </label>
                   <input
-                    className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+                    className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
                     id='email'
                     value={values.email}
                     onChange={onChange}
@@ -1097,11 +1097,11 @@ function ChangePassword() {
       <form className='bg-white w-1/3  rounded px-8 pt-6 pb-8 mb-4'>
 
         <div className='mb-4 mt-6'>
-          <label className='block text-blue-900 text-sm font-bold mb-2' for='username'>
+          <label className='block text-red-700 text-sm font-bold mb-2' for='username'>
             Old Password
           </label>
           <input
-            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
             id='username'
             value={values.oldPassword}
             onChange={onChange}
@@ -1110,11 +1110,11 @@ function ChangePassword() {
             placeholder='******************'/>
         </div>
         <div className='mb-4'>
-          <label className='block text-blue-900 text-sm font-bold mb-2' for='username'>
+          <label className='block text-red-700 text-sm font-bold mb-2' for='username'>
             New Password
           </label>
           <input
-            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
             id='email'
             value={values.newPassword}
             onChange={onChange}
@@ -1123,11 +1123,11 @@ function ChangePassword() {
             placeholder='******************'/>
         </div>
         <div className='mb-6'>
-          <label className='block text-blue-900 text-sm font-bold mb-2' for='password'>
+          <label className='block text-red-700 text-sm font-bold mb-2' for='password'>
             Confirm New Password
           </label>
           <input
-            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+            className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
             id='password'
             value={values.confirmNewPassword}
             onChange={onChange}
@@ -1138,7 +1138,7 @@ function ChangePassword() {
         </div>
         <div className='flex flex-col items-center justify-between'>
           <button
-            className='bg-blue-900 w-full mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+            className='bg-red-700 w-full mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
             type='button'
             onClick={Change}>
             Change Password
@@ -1273,11 +1273,11 @@ function UserForm(props) {
     <form className='bg-white  rounded px-8 pt-6 pb-8 mb-4'>
 
       <div className='mb-4 mt-6'>
-        <label className='block text-blue-900 text-sm font-bold mb-2' for='username'>
+        <label className='block text-red-700 text-sm font-bold mb-2' for='username'>
           Username
         </label>
         <input
-          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
           id='username'
           value={values.username}
           onChange={onChange}
@@ -1286,11 +1286,11 @@ function UserForm(props) {
           placeholder='Username'/>
       </div>
       <div className='mb-4'>
-        <label className='block text-blue-900 text-sm font-bold mb-2' for='username'>
+        <label className='block text-red-700 text-sm font-bold mb-2' for='username'>
           Email
         </label>
         <input
-          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
           id='email'
           value={values.email}
           onChange={onChange}
@@ -1299,11 +1299,11 @@ function UserForm(props) {
           placeholder='Email'/>
       </div>
       <div className='mb-4'>
-        <label className='block text-blue-900 text-sm font-bold mb-2' for='password'>
+        <label className='block text-red-700 text-sm font-bold mb-2' for='password'>
           Password
         </label>
         <input
-          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
           id='password'
           type='password'
           value={values.password}
@@ -1313,11 +1313,11 @@ function UserForm(props) {
 
       </div>
       <div className='mb-6'>
-        <label className='block text-blue-900 text-sm font-bold mb-2' for='password'>
+        <label className='block text-red-700 text-sm font-bold mb-2' for='password'>
           Confirm Password
         </label>
         <input
-          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
           id='password'
           value={values.confirmPassword}
           onChange={onChange}
@@ -1328,7 +1328,7 @@ function UserForm(props) {
       </div>
       <div className='flex flex-col items-center justify-between'>
         <button
-          className='bg-blue-900 w-full mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-red-700 w-full mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
           type='button'
           onClick={() => {
           props.next();
@@ -1369,11 +1369,11 @@ function WebsiteForm(props) {
   return (
     <form className='bg-white  rounded px-8 pt-6 pb-8 mb-4'>
       <div className='mb-4'>
-        <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+        <label className='block text-red-700 text-sm font-bold mb-2' for='siteName'>
           Site name / Alias
         </label>
         <input
-          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
           id='siteName'
           type='text'
           value={pagename}
@@ -1382,11 +1382,11 @@ function WebsiteForm(props) {
 
       </div>
       <div className='mb-4'>
-        <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+        <label className='block text-red-700 text-sm font-bold mb-2' for='siteName'>
           Site Url
         </label>
         <input
-          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
           id='siteUrl'
           type='text'
           value={url}
@@ -1395,11 +1395,11 @@ function WebsiteForm(props) {
 
       </div>
       <div className='mb-4'>
-        <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+        <label className='block text-red-700 text-sm font-bold mb-2' for='siteName'>
           FTP Url
         </label>
         <input
-          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
           id='ftpUrl'
           type='text'
           value={ftp}
@@ -1408,11 +1408,11 @@ function WebsiteForm(props) {
 
       </div>
       <div className='mb-4'>
-        <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+        <label className='block text-red-700 text-sm font-bold mb-2' for='siteName'>
           FTP Username
         </label>
         <input
-          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
           id='ftpUrl'
           type='text'
           value={ftpUsername}
@@ -1421,11 +1421,11 @@ function WebsiteForm(props) {
 
       </div>
       <div className='mb-4'>
-        <label className='block text-blue-900 text-sm font-bold mb-2' for='siteName'>
+        <label className='block text-red-700 text-sm font-bold mb-2' for='siteName'>
           FTP Password
         </label>
         <input
-          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900'
+          className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-700'
           id='ftpUrl'
           type='text'
           value={ftpPassword}
@@ -1435,7 +1435,7 @@ function WebsiteForm(props) {
       </div>
       <div className='flex flex-col items-center justify-between'>
         <button
-          className='bg-blue-900 w-full mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-red-700 w-full mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
           type='button'
           onClick={() => Send()}>
           Add User
