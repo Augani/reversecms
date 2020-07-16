@@ -4,6 +4,8 @@ var Bcrypt = require('bcryptjs')
 
 
 
+
+
 const FindUser = async function(username){
     return new Promise((resolve, reject)=>{
         User.find({username}, function(err,result){
@@ -36,9 +38,7 @@ const FindAllUsers = async function(){
 
 const findByEmail  = async email =>{
     return new Promise((resolve, reject)=>{
-        console.log(email)
         User.find({email}).exec(async function(err, doc){
-            console.log(doc)
             if(err || !doc.length)reject(0);
             resolve(doc[0]);
         })

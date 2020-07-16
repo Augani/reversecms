@@ -1,6 +1,7 @@
 
 const cheerio = require('cheerio');
 const axios = require('axios');
+const glob = require('glob')
 const tags = [];
 var htmlSrc = "";
 
@@ -9,29 +10,19 @@ const fetchData = async (url) => {
     return cheerio.load(result.data);
   };
   const getResults = async (url) => {
-    const $ = await fetchData(url);
+    const $ = cheerio.load(url)
   
-    $(".air-reverse").each((index, element) => {
+    $("h1, h2, h3, h4, h5, h6,p,a").each((index, element) => {
         tags.push({
             class: $(element).attr('class'),
             value:$(element).text()
         });
         $(element).attr('contenteditable', true);
-
-
+        console.log($(element).text());
      
     });
-
-  //   $(".air-reverse").each((index, element) => {
-  //       $(element).attr('contenteditable', true);
-  //   });
-
+   
    htmlSrc = $.html();
- 
-
-
-    
-  //Convert to an array so that we can sort the results.
   return {
    
     tags: [...tags].sort(),

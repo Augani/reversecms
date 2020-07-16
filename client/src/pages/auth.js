@@ -12,7 +12,6 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 import { LoginUser } from '../actions'
 
 function LoginRT (props) {
-  console.log(props)
   const [loginRun] = useMutation(LOGIN_SCRIPT);
   const [values, setValues] = React.useState({
     signClicked: false,
@@ -73,7 +72,7 @@ function LoginRT (props) {
           <div className='w-4/5 md:w-3/5 lg:w-2/5'>
             <form className='bg-white  rounded px-8 pt-6 pb-8 mb-4'>
               <h3 className='md:text-4xl text-2xl text-blue-900 text-center font-bold'>
-                NTemtem Web
+                Tentem Web
               </h3>
               <hr />
               <div className='mb-4 mt-6'>
@@ -181,7 +180,7 @@ function RegisterT (props) {
       <div className='w-4/5 md:w-2/5'>
         <form className='bg-white  rounded px-8 pt-6 pb-8 mb-4'>
           <h3 className='md:text-4xl text-2xl text-blue-900 text-center font-bold'>
-            Temtem Web
+            Tentem Web
           </h3>
           <hr />
           <div className='mb-4 mt-6'>
@@ -358,11 +357,9 @@ class Auth extends PureComponent {
   }
 
   componentDidMount () {
-    console.log(this.props)
   }
 
   render () {
-    console.log(this.props)
     if(this.props.PROFILE._id){
       return <Redirect to="/home"/>
     }

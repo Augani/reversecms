@@ -11,8 +11,9 @@ let siteSchema = new mongoose.Schema(
     },
     ftpUrl:{
       type: String,
-      unique: true
     },
+    ftpUsername: String,
+    ftpPassword: String,
     
     owner: Object,
 
