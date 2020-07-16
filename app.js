@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     console.log(req, 21)
-    cb(null, process.cwd()+'/tempFiles/')
+    cb(null, 'tempFiles/')
   },
   filename: function (req, file, cb) {
     console.log(req, 31)
@@ -38,7 +38,7 @@ var upload = multer({ storage: storage })
 
 
 app.post('/uploadFile', upload.single('sampleFile'), async (req, res, next) => {
-  const thePath = process.cwd()+'/sites/local/' + req.body.username+"/"+req.body.pagename;
+  const thePath = 'sites/local/' + req.body.username+"/"+req.body.pagename;
   console.log(thePath)
   const file = req.file
   if (!file) {
