@@ -22,10 +22,10 @@ app.use(cors())
 const multer = require('multer')
 app.use(bodyParser.json({limit: "50mb"}));
 app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
-
+var defaultFolder = path.join(__dirname, 'tempFiles')
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './tempFiles/')
+    cb(null, defaultFolder)
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '.zip')
