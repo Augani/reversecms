@@ -29,7 +29,6 @@ class Home extends PureComponent {
   }
 
   content = g => {
-    console.log()
     this.setState({
       content: g
     })
@@ -63,7 +62,7 @@ class Home extends PureComponent {
   }
 }
 
-function Vnav (props) {
+function VnavL (props) {
   const lok = useSpring({
     opacity: 1,
     from: { opacity: 0 }
@@ -82,7 +81,7 @@ function Vnav (props) {
           </animated.div>
         ))
       case 'users':
-        let vm = ['Accounts', 'Add user'];
+        let vm = props.PROFILE.userType>0? ['Accounts', 'Add user', 'Profile']:['Profile'];
         return vm.map(p =>(
           <animated.div style={lok}>
           <ListItem button name={p} onClick={() => props.content(p)}>
@@ -110,12 +109,12 @@ function Vnav (props) {
   )
 }
 
-function Navs (props) {
+function NavsL (props) {
   const [page, setPage] = React.useState('home')
   let location = useLocation()
   const data = {
     home: 'Published',
-    users: 'Accounts',
+    users: props.PROFILE.userType>0 ?'Accounts': 'Profile',
     settings: 'Change Password'
   }
 
@@ -212,4 +211,6 @@ const mapDispatchToProps = {
   LogoutUser
 }
 
+const Navs = connect(mapStateToProps, mapDispatchToProps)(withRouter(NavsL))
+const Vnav  = connect(mapStateToProps, mapDispatchToProps)(withRouter(VnavL))
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Home))

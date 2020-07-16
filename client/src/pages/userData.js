@@ -12,12 +12,16 @@ const useStyles = makeStyles(theme => ({
 
 function UserData (props) {
   const classes = useStyles()
+  const size = props.size == "large"?{
+    width: 150,
+    height: 150
+  }:{};
   return (
-    <div className='flex flex-row-reverse h-full items-center'>
+    <div className='flex flex-row-reverse  items-center'>
       
-        <Avatar alt='Remy Sharp' src={Image} className="mx-4" />
+        <Avatar style={size} alt='Remy Sharp' src={Image} className="mx-4" />
       
-       <h4 className=" font-black text-blue-900 text-xl">{props.PROFILE.username}</h4>
+      {props.hide?null: <h4 className=" font-black text-blue-900 text-xl">{props.PROFILE.username}</h4>}
        
       
     </div>

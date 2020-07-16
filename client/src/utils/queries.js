@@ -42,12 +42,18 @@ export const UPLOAD_FILE = gql`
 
 export const ADD_SITE = gql`
    
-    mutation upSite($siteUrl: String!, $pagename: String!, $username: String!, $ftpUrl: String){
-        addSite(data: {siteUrl: $siteUrl,pagename: $pagename, ftpUrl: $ftpUrl, username: $username}){
+    mutation upSite($siteUrl: String!, $pagename: String!, $username: String!, $ftpUrl: String, $ftpUser: String, $ftpPass: String){
+        addSite(data: {siteUrl: $siteUrl,pagename: $pagename, ftpUrl: $ftpUrl, username: $username, ftpUsername: $ftpUser, ftpPassword: $ftpPass}){
             _id,
             siteUrl,
             pagename,
         }
+    }
+`;
+
+export const DELETE_SITE = gql`
+    mutation removeSite($id: String){
+        removeSite(id: $id)
     }
 `;
 
@@ -71,19 +77,31 @@ export const GET_SITES_USER = gql`
                 _id,
                 siteUrl,
                 ftpUrl,
-                pagename
+                pagename,
+                owner{
+                    email,
+                    username
+                }
         }
     }
 `;
 
 export const GET_EDITABLE = gql`
-       query getEditableContent($site: String!){
-            getEditable(site:$site){
-                tags {
-                    class
-                    value
-                  },
-                src
-        }
+       query getEditableContent($pagename: String, $email: String){
+            getEditable(data:{pagename: $pagename, username: $email})
     }
+`;
+
+export const REGISTER_NEW_USER_WITH_SITE = gql`
+mutation RegisterWithSite( $username: String!, $email: String!, $password: String!,$url: String!, $pagename: String!, $ftp: String, $ftpUsername: String, $ftpPassword: String){
+    registerWithSite(user: {username: $username, password: $password, email: $email, url: $url, ftp: $ftp, ftpUsername: $ftpUsername, ftpPassword: $ftpPassword, pagename: $pagename})
+}
+
+`;
+
+export const UPDATE_PAGE = gql`
+mutation updatePage($pageData: String!, $page: String, $username: String, $pagename: String){
+    updatePageData(pageData: $pageData, page: $page, username: $username, pagename: $pagename)
+}
+
 `;
