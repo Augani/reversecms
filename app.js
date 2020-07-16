@@ -36,9 +36,11 @@ var upload = multer({ storage: storage })
 
 
 app.post('/uploadFile', upload.single('sampleFile'), async (req, res, next) => {
-  const thePath = './sites/local/' + req.body.username+"/"+req.body.pagename;
+  const thePath = path.join(__dirname ,'sites','local',req.body.username,req.body.pagename);
+  console.log(thePath);
   
   const file = req.file
+  console.log(file.path);
   if (!file) {
     const error = new Error('Please upload a file')
     error.httpStatusCode = 400
@@ -49,11 +51,12 @@ app.post('/uploadFile', upload.single('sampleFile'), async (req, res, next) => {
    }catch(e){
 
    }
-  fs.createReadStream('./' + file.path).pipe(
+   let zipped = path.join(__dirname, file.path);
+  fs.createReadStream(zipped).pipe(
     unzipper.Extract({ path: thePath })
   )
   try {
-   await fs.unlinkSync(req.file.path)
+   await fs.unlinkSync(zipped)
     //file removed
   } catch(err) {
     console.error(err)
