@@ -55,12 +55,12 @@ app.post('/uploadFile', upload.single('sampleFile'), async (req, res, next) => {
   fs.createReadStream(file.path).pipe(
     unzipper.Extract({ path: thePath })
   )
-  try {
-   await fs.unlinkSync(file.path)
-    //file removed
-  } catch(err) {
-    console.error(err)
-  }
+  // try {
+  //  await fs.unlinkSync(file.path)
+  //   //file removed
+  // } catch(err) {
+  //   console.error(err)
+  // }
   res.send(file)
 })
 // app.use(express.static(__dirname+'sites'))
