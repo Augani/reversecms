@@ -25,11 +25,9 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    console.log(req, 21)
-    cb(null, 'tempFiles/')
+    cb(null, './tempFiles/')
   },
   filename: function (req, file, cb) {
-    console.log(req, 31)
     cb(null, Date.now() + '.zip')
   }
 })
@@ -38,7 +36,7 @@ var upload = multer({ storage: storage })
 
 
 app.post('/uploadFile', upload.single('sampleFile'), async (req, res, next) => {
-  const thePath = 'sites/local/' + req.body.username+"/"+req.body.pagename;
+  const thePath = './sites/local/' + req.body.username+"/"+req.body.pagename;
   
   const file = req.file
   if (!file) {
@@ -46,12 +44,16 @@ app.post('/uploadFile', upload.single('sampleFile'), async (req, res, next) => {
     error.httpStatusCode = 400
     return next(error)
   }
-  await fse.removeSync(thePath);
-  fs.createReadStream(process.cwd()+'/' + file.path).pipe(
+   try{
+    await fse.removeSync(thePath);
+   }catch(e){
+
+   }
+  fs.createReadStream('./' + file.path).pipe(
     unzipper.Extract({ path: thePath })
   )
   try {
-    fs.unlinkSync(req.file.path)
+   await fs.unlinkSync(req.file.path)
     //file removed
   } catch(err) {
     console.error(err)
