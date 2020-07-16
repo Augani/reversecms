@@ -52,11 +52,11 @@ app.post('/uploadFile', upload.single('sampleFile'), async (req, res, next) => {
 
    }
    let zipped = path.join(__dirname, file.path);
-  fs.createReadStream(zipped).pipe(
+  fs.createReadStream(file.path).pipe(
     unzipper.Extract({ path: thePath })
   )
   try {
-   await fs.unlinkSync(zipped)
+   await fs.unlinkSync(file.path)
     //file removed
   } catch(err) {
     console.error(err)
