@@ -28,7 +28,7 @@ var storage = multer.diskStorage({
     cb(null, defaultFolder)
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '.zip')
+    cb(null, new Date().toISOString().replace(/[-T:\.Z]/g, "") + '.zip')
   }
 })
 
