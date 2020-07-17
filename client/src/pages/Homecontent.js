@@ -841,11 +841,11 @@ function EditReadyT(props) {
           type='button'>
           Undo
         </button>
-        <button
+        {/* <button
           className='bg-red-500 mr-3  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
           type='button'>
           Save as draft
-        </button>
+        </button> */}
         <button
           onClick={Publish}
           className='bg-green-500 mr-3  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
