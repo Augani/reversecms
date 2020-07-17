@@ -114,7 +114,7 @@ function LoginRT (props) {
               <div className='flex flex-col items-center justify-between'>
                 <button
                 onClick={Login}
-                  className='bb0 w-full mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                  className='bb0 w-full mb-4 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
                   type='button'
                 >
                   Sign In
@@ -125,12 +125,12 @@ function LoginRT (props) {
                 >
                   Forgot Password?
                 </a>
-                <p className='text-center text-gray-900'>
+                {/* <p className='text-center text-gray-900'>
                   Don't have an account? <br className="md:hidden"/>
                   <Link className='text-red-700' to='/signup'>
                     Create One
                   </Link>
-                </p>
+                </p> */}
               </div>
             </form>
             <p className='text-center text-gray-500 text-xs'>
@@ -256,13 +256,13 @@ function RegisterT (props) {
             
           </div>
           <div className='flex flex-col items-center justify-between'>
-            <button
+            {/* <button
               className='bb0 w-full mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
               type='button'
               onClick={Register}
             >
               Create account
-            </button>
+            </button> */}
 
             <p className='text-center text-gray-900'>
               Already a member?<br className="md:hidden"/>

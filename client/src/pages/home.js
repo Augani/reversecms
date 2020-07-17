@@ -51,7 +51,7 @@ class Home extends PureComponent {
           <Navs route={this.state.route} logout={this.props.LogoutUser} change={this.change} />
         </Pane>
         <div className='roP h-full flex flex-col'>
-          <Navbar name='Reverse CMS' />
+          <Navbar name='' />
           <Vnav route={this.state.route} content={this.content} />
         </div>
         <div className='mainPage w-full'>
@@ -72,7 +72,7 @@ function VnavL (props) {
     if(Array.isArray(menu))menu=menu[0];
     switch (menu) {
       case 'home':
-        let mn = ['Published', 'Drafts']
+        let mn = ['Published']
         return mn.map(p => (
           <animated.div style={lok}>
             <ListItem button name={p} onClick={() => props.content(p)}>
