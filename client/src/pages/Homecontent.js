@@ -271,6 +271,10 @@ function TileR(prop) {
     })
   }
 
+  const Push = ()=>{
+
+  }
+
   const Close = () => {
     setPage(null)
   }
@@ -303,6 +307,12 @@ function TileR(prop) {
   if (page && siteLink) {
     return (
       <div className="w-full h-full flex flex-col items-end">
+      <button
+          onClick={Push}
+          className='bg-green-500  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          type='button'>
+          Publish Site
+        </button>
         <button
           onClick={Close}
           className='bg-red-500  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
@@ -788,7 +798,7 @@ function EditReadyT(props) {
         page: currentPage
       }
     }).then((t) => {
-      toaster.success('Page published successfully');
+      toaster.success('Changes saved successfully');
     }).catch((e) => {
       toaster.danger("Site couldn't be activated");
     })
@@ -814,7 +824,8 @@ function EditReadyT(props) {
   }
 
   const Undo = ()=>{
-    document.execCommand('undo', false, null);
+      let frame= document.getElementById('editableIframe');
+    frame.contentWindow.document.execCommand('undo', false, null);
   }
   const Save = () => {}
   React.useEffect(() => {
@@ -850,7 +861,7 @@ function EditReadyT(props) {
           onClick={Publish}
           className='bg-green-500 mr-3  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
           type='button'>
-          Publish
+          Save
         </button>
         <button
           onClick={props.Close}
