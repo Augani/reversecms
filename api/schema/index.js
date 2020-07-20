@@ -88,6 +88,7 @@ var schema = buildSchema(`
     removeSite(id:String): String
     registerWithSite(user: userWithSite): String
     updatePageData(pageData: String,page: String, username: String, pagename: String): String
+    publishSite(username: String, site: String):String
     
     
   }

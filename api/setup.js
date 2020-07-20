@@ -46,14 +46,14 @@ function removeEditable (url) {
 
 const Done = async ({ username, pagename }) => {
   var options = {
-    cwd: `../sites/${username}/${pagename}`
+    cwd: `../sites/local/${username}/${pagename}`
   }
 
   glob('**/*.html', options, function (err, files) {
     for (let y = 0; y < files.length; y++) {
-      let way = '../sites/' + username + '/' + pagename + '/' + files[y]
+      let way = '../sites/local/' + username + '/' + pagename + '/' + files[y]
       let gs = null
-      fs.readFile(way, 'utf8', async function (err, data) {
+      fs.readFile(way, 'utf8', function (err, data) {
         if (err) {
           return console.log(err)
         }

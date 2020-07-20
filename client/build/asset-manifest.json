@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/static/css/main.06229ad6.chunk.css",
-    "main.js": "/static/js/main.ae8f291f.chunk.js",
-    "main.js.map": "/static/js/main.ae8f291f.chunk.js.map",
+    "main.js": "/static/js/main.2a0a9c4b.chunk.js",
+    "main.js.map": "/static/js/main.2a0a9c4b.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.597b7f10.js",
     "runtime-main.js.map": "/static/js/runtime-main.597b7f10.js.map",
-    "static/js/2.61a6a3df.chunk.js": "/static/js/2.61a6a3df.chunk.js",
-    "static/js/2.61a6a3df.chunk.js.map": "/static/js/2.61a6a3df.chunk.js.map",
+    "static/js/2.dd69ac86.chunk.js": "/static/js/2.dd69ac86.chunk.js",
+    "static/js/2.dd69ac86.chunk.js.map": "/static/js/2.dd69ac86.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.7ee4aab3919cc8b4b223cdafeef14c68.js": "/precache-manifest.7ee4aab3919cc8b4b223cdafeef14c68.js",
+    "precache-manifest.4acbdad965ed255207d1bfb98066e008.js": "/precache-manifest.4acbdad965ed255207d1bfb98066e008.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.06229ad6.chunk.css.map": "/static/css/main.06229ad6.chunk.css.map",
-    "static/js/2.61a6a3df.chunk.js.LICENSE.txt": "/static/js/2.61a6a3df.chunk.js.LICENSE.txt",
+    "static/js/2.dd69ac86.chunk.js.LICENSE.txt": "/static/js/2.dd69ac86.chunk.js.LICENSE.txt",
     "static/media/auth.css": "/static/media/apple-computer-decor-design-326502.3e6ef604.jpg",
     "static/media/logo.svg": "/static/media/logo.5d5d9eef.svg",
     "static/media/logo.png": "/static/media/logo.ca999f9b.png"
   },
   "entrypoints": [
     "static/js/runtime-main.597b7f10.js",
-    "static/js/2.61a6a3df.chunk.js",
+    "static/js/2.dd69ac86.chunk.js",
     "static/css/main.06229ad6.chunk.css",
-    "static/js/main.ae8f291f.chunk.js"
+    "static/js/main.2a0a9c4b.chunk.js"
   ]
 }

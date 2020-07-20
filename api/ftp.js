@@ -34,7 +34,7 @@ var fs = require('fs');
             port: 21
             
         })
-        console.log(this)
+       
       }
 
       getFiles(){
