@@ -33,7 +33,8 @@ import {
   ADD_SITE,
   GET_EDITABLE,
   DELETE_SITE,
-  UPDATE_PAGE
+  UPDATE_PAGE,
+  PUBLISH_SITE
 } from '../utils/queries';
 import {useDropzone} from 'react-dropzone'
 import Cms from '../anim/17343-programming.json'
@@ -180,6 +181,11 @@ function TileR(prop) {
       error
     }
   ] = useMutation(ADD_SITE);
+  const [PublishSite, {
+    lo,
+    er
+  }
+] = useMutation(PUBLISH_SITE);
   const [deleteSite, {
       load,
       err
@@ -227,8 +233,11 @@ function TileR(prop) {
 
   const viewSite = (d,c) => {
     let web = "/local/" + c.email + "/" + d + "/";
+    setEditor(c.email)
+    setPageSelected(d);
     setPage(true);
     setSiteLink(web);
+   
   }
   const viewEdit = async(d,c) => {
     let web = "/local/" + c.email + "/" + d + "/";
@@ -272,6 +281,17 @@ function TileR(prop) {
   }
 
   const Push = ()=>{
+    PublishSite({
+      variables:{
+        username: editor,
+        site: pageSelected
+      }
+    }).then((resp)=>{
+      console.log(resp)
+
+    }).catch((e)=>{
+
+    })
 
   }
 
@@ -280,6 +300,7 @@ function TileR(prop) {
   }
 
   const siteUpload = (files, user, site)=>{
+    toaster.notify('Please wait, site is being uploaded')
     var formData = new FormData();
     var imagefile = files;
     formData.append("sampleFile", imagefile[0]);
@@ -307,9 +328,10 @@ function TileR(prop) {
   if (page && siteLink) {
     return (
       <div className="w-full h-full flex flex-col items-end">
-      <button
+     <div className="w-full flex flex-row-reverse">
+     <button
           onClick={Push}
-          className='bg-green-500  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-green-500 mx-4  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
           type='button'>
           Publish Site
         </button>
@@ -319,6 +341,7 @@ function TileR(prop) {
           type='button'>
           Close
         </button>
+     </div>
 
         <iframe className="w-full h-full" src={siteLink}></iframe>
       </div>

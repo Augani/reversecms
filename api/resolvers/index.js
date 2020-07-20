@@ -13,7 +13,7 @@ const GetResults = require('../scrape')
 const fs = require('fs')
 const Editable = require('../setup')
 const glob = require('glob')
-const { Setup } = require('../setup')
+const { Setup, Done } = require('../setup')
 const LoginUser = input => {
   return Login(input)
     .then(d => {
@@ -91,6 +91,13 @@ const register = async ({ user }) => {
   return d
 }
 
+const publishSite = async ({username, site})=>{
+ 
+  await Done({username, pagename: site});
+  
+  return 'Done';
+}
+
 const registerWithSite = async ({ user }) => {
   const {
     username,
@@ -139,7 +146,8 @@ var root = {
   getEditable,
   removeSite,
   registerWithSite,
-  updatePageData
+  updatePageData,
+  publishSite
 }
 
 module.exports = root

@@ -40,6 +40,13 @@ export const UPLOAD_FILE = gql`
     }
 `;
 
+export const PUBLISH_SITE = gql`
+   
+    mutation publish($username: String!, $site: String! ){
+        publishSite(username: $username,site: $site)
+    }
+`;
+
 export const ADD_SITE = gql`
    
     mutation upSite($siteUrl: String!, $pagename: String!, $username: String!, $ftpUrl: String, $ftpUser: String, $ftpPass: String){
