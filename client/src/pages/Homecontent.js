@@ -23,7 +23,7 @@ import Component from '@reactions/component'
 import {withRouter, Link, Redirect} from 'react-router-dom'
 import Table from '../components/table';
 import $ from 'jquery';
-import { Avatar } from '@material-ui/core'
+import { Avatar, Button } from '@material-ui/core'
 import axios from 'axios';
 import {
   LOGIN_SCRIPT,
@@ -305,10 +305,19 @@ function TileR(prop) {
     var imagefile = files;
     formData.append("sampleFile", imagefile[0]);
     formData.append('username', user.email);
-    formData.append('pagename', site)
+    formData.append('pagename', site);
+    $('#fileLoader').trigger('click');
     axios.post('/uploadFile', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvent)=>{
+          if (progressEvent.lengthComputable) {
+            let percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+            console.log(percentCompleted)
+            $('#loaderProgress').text(percentCompleted)
+            
+         }
         }
     }).then((resp)=>{
       toaster.success('Woohoo!!!\n Site uploaded successfully');
@@ -350,6 +359,25 @@ function TileR(prop) {
 
   return (
     <div className="h-full w-full ">
+    <Component initialState={{ isShown: false, progress: 0 }}>
+  {({ state, setState }) => (
+    <React.Fragment>
+      <CornerDialog
+        title="File uploading"
+        isShown={state.isShown}
+        hasFooter={false}
+        onCloseComplete={() => setState({ isShown: false })}
+      >
+       <div className="flex flex-row">
+       <p className="text-2xl text-blue-600" id="loaderProgress"></p><p className="text-2xl text-blue-600">%</p>
+       </div>
+      </CornerDialog>
+      <Button className="hidden" id="fileLoader" onClick={() => setState({ isShown: true })}>
+       
+      </Button>
+    </React.Fragment>
+  )}
+</Component>
       <div className="w-full flex flex-row-reverse">
         <animated.div
           onMouseMove={({clientX: x, clientY: y}) => set({
