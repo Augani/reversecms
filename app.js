@@ -20,8 +20,8 @@ const port = process.env.PORT || 4000
 var app = express()
 app.use(cors())
 const multer = require('multer')
-app.use(bodyParser.json({limit: "50mb"}));
-app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+app.use(bodyParser.json({limit: "250mb"}));
+app.use(bodyParser.urlencoded({limit: "250mb", extended: true, parameterLimit:250000}));
 var defaultFolder = path.join(__dirname, 'tempFiles')
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
