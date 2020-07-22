@@ -306,7 +306,7 @@ function TileR(prop) {
     var formData = new FormData();
     var imagefile = files[0];
     
-    const uploader = new HugeUploader({ endpoint: '/upload', file: imagefile, postParams:{
+    const uploader = new HugeUploader({ endpoint: '/upload',chunkSize:1 , file: imagefile, postParams:{
       username:user.email,
     pagename:site
     }});
