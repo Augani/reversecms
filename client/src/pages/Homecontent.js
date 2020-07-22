@@ -13,7 +13,8 @@ import {
   TablistProps,
   Paragraph
 } from 'evergreen-ui';
-
+import * as UpChunk from '@mux/upchunk';
+import HugeUploader from 'huge-uploader';
 import DropImage from '../components/drop';
 import {parse} from 'node-html-parser';
 import User from './userData'
@@ -303,15 +304,34 @@ function TileR(prop) {
   const siteUpload = (files, user, site)=>{
     toaster.notify('Please wait, site is being uploaded')
     var formData = new FormData();
-    var imagefile = files;
+    var imagefile = files[0];
+    
+    const uploader = new HugeUploader({ endpoint: '/upload', file: imagefile, postParams:{
+      username:user.email,
+    pagename:site
+    }});
+
+    // subscribe to events
+    $('#fileLoader').trigger('click');
+    uploader.on('error', (err) => {
+      console.error('Something bad happened', err.detail);
+    });
+    
+    uploader.on('progress', (progress) => {
+        console.log(`The upload is at ${progress.detail}%`);
+        $('#loaderProgress').text(progress.detail)
+    });
+    
+    uploader.on('finish', () => {
+        console.log('yeahhh');
+        // toaster.success('Woohoo!!!\n Site uploaded successfully');
+        // toaster.notify('Go ahead and edit')
+    });
 
 
 
 
-
-
-
-
+/** 
 
     formData.append("sampleFile", imagefile[0]);
     formData.append('username', user.email);
@@ -335,7 +355,7 @@ function TileR(prop) {
       toaster.success('Woohoo!!!\n Site uploaded successfully');
       toaster.notify('Go ahead and edit')
     }).catch(er=>console.log(er))
-    
+    */
   }
 
   if (edit && siteLink) {
