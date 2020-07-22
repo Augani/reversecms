@@ -23,7 +23,7 @@ const multer = require('multer')
 app.use(bodyParser.json({limit: "250mb"}));
 app.use(bodyParser.urlencoded({limit: "250mb", extended: true, parameterLimit:250000}));
 app.use(function(req, res, next){
-  res.setTimeout(810480000, function(){ // 4 minute timeout adjust for larger uploads
+  req.setTimeout(810480000, function(){ // 4 minute timeout adjust for larger uploads
       console.log('Request has timed out.');
           res.send(408);
       });
