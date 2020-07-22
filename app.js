@@ -23,7 +23,7 @@ const multer = require('multer')
 app.use(bodyParser.json({limit: "250mb"}));
 app.use(bodyParser.urlencoded({limit: "250mb", extended: true, parameterLimit:250000}));
 app.use(function(req, res, next){
-  res.setTimeout(10480000, function(){ // 4 minute timeout adjust for larger uploads
+  res.setTimeout(810480000, function(){ // 4 minute timeout adjust for larger uploads
       console.log('Request has timed out.');
           res.send(408);
       });
@@ -43,12 +43,14 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 
+
 app.post('/uploadFile', upload.single('sampleFile'), async (req, res, next) => {
   const thePath = path.join(__dirname ,'sites','local',req.body.username,req.body.pagename);
   console.log(thePath);
   
+
   const file = req.file
-  console.log(file.path);
+
   if (!file) {
     const error = new Error('Please upload a file')
     error.httpStatusCode = 400
@@ -71,15 +73,15 @@ app.post('/uploadFile', upload.single('sampleFile'), async (req, res, next) => {
   // }
   res.send(file)
 })
-// app.use(express.static(__dirname+'sites'))
-// app.get('/sites/:id/:file/:page', function (req, res) {
-//   var site = req.params.id
-//   var fil = req.params.file;
-//   var p = req.params.page;
-//   // var fileServer = new nStatic.Server(`./sites/${site}/${fil}`)
-//   // fileServer.serve(req, res);
-//   res.sendFile(path.join(__dirname, `sites/${site}/${fil}`, p?p:'index.html'))
-// })
+app.use(express.static(__dirname+'sites'))
+app.get('/sites/:id/:file/:page', function (req, res) {
+  var site = req.params.id
+  var fil = req.params.file;
+  var p = req.params.page;
+  // var fileServer = new nStatic.Server(`./sites/${site}/${fil}`)
+  // fileServer.serve(req, res);
+  res.sendFile(path.join(__dirname, `sites/${site}/${fil}`, p?p:'index.html'))
+})
 
 app.use('/local', createProxyMiddleware({ target: 'http://localhost:4001', changeOrigin: true }));
 
