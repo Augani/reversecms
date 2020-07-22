@@ -13,6 +13,7 @@ import {
   TablistProps,
   Paragraph
 } from 'evergreen-ui';
+
 import DropImage from '../components/drop';
 import {parse} from 'node-html-parser';
 import User from './userData'
@@ -303,6 +304,15 @@ function TileR(prop) {
     toaster.notify('Please wait, site is being uploaded')
     var formData = new FormData();
     var imagefile = files;
+
+
+
+
+
+
+
+
+
     formData.append("sampleFile", imagefile[0]);
     formData.append('username', user.email);
     formData.append('pagename', site);
@@ -311,6 +321,8 @@ function TileR(prop) {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
+        maxContentLength: 100000000,
+        maxBodyLength: 1000000000,
         onUploadProgress: (progressEvent)=>{
           if (progressEvent.lengthComputable) {
             let percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
@@ -323,6 +335,7 @@ function TileR(prop) {
       toaster.success('Woohoo!!!\n Site uploaded successfully');
       toaster.notify('Go ahead and edit')
     }).catch(er=>console.log(er))
+    
   }
 
   if (edit && siteLink) {
