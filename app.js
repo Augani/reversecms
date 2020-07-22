@@ -65,7 +65,7 @@ app.post('/upload',   (req, res, next) => {
               fs.createReadStream(rename).pipe(
                 unzipper.Extract({ path: thePath })
               );
-              res.end("Sucessfull upload");
+              // res.end("Sucessfull upload");
           });
           }) // { filePath: 'tmp/1528932277257', postParams: { email: 'upload@corp.com', name: 'Mr Smith' } }
           // errors if any are triggered by the file system (disk is full…)
