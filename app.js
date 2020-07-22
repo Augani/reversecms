@@ -40,12 +40,12 @@ var storage = multer.diskStorage({
 })
 
 var upload = multer({ storage: storage })
-const maxFileSize = 10;
+const maxFileSize = 2;
 const tmpDir = './tempFiles';
 app.post('/upload',   (req, res, next) => {
  
  
-  uploader(req, tmpDir, maxFileSize, 10)
+  uploader(req, tmpDir, maxFileSize, 200)
   .then((assembleChunks) => {
       // chunk written to disk
       res.writeHead(204, 'No Content');
