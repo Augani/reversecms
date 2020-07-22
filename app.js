@@ -22,14 +22,26 @@ app.use(cors())
 const multer = require('multer')
 app.use(bodyParser.json({limit: "250mb"}));
 app.use(bodyParser.urlencoded({limit: "250mb", extended: true, parameterLimit:250000}));
-app.use(function(req, res, next){
-  req.setTimeout(810480000, function(){ // 4 minute timeout adjust for larger uploads
-      console.log('Request has timed out.');
-          res.send(408);
-      });
+// app.use(function(req, res, next){
+//   req.setTimeout(810480000, function(){ // 4 minute timeout adjust for larger uploads
+//       console.log('Request has timed out.');
+//           res.send(408);
+//       });
 
-  next();
-});
+//   next();
+// });
+
+
+function setConnectionTimeout(time) {
+  var delay = typeof time === 'string'
+    ? ms(time)
+    : Number(time || 5000);
+
+  return function (req, res, next) {
+    res.connection.setTimeout(delay);
+    next();
+  }
+}
 var defaultFolder = path.join(__dirname, 'tempFiles')
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -44,7 +56,7 @@ var upload = multer({ storage: storage })
 
 
 
-app.post('/uploadFile', upload.single('sampleFile'), async (req, res, next) => {
+app.post('/uploadFile',setConnectionTimeout('12h'), upload.single('sampleFile'), async (req, res, next) => {
   const thePath = path.join(__dirname ,'sites','local',req.body.username,req.body.pagename);
   console.log(thePath);
   
