@@ -14,6 +14,7 @@ const fse = require('fs-extra')
 var nStatic = require('node-static');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const ms = require('ms');
+var timeout = require('connect-timeout');
 
 
 
@@ -23,26 +24,15 @@ app.use(cors())
 const multer = require('multer')
 app.use(bodyParser.json({limit: "250mb"}));
 app.use(bodyParser.urlencoded({limit: "250mb", extended: true, parameterLimit:250000}));
-// app.use(function(req, res, next){
-//   req.setTimeout(810480000, function(){ // 4 minute timeout adjust for larger uploads
-//       console.log('Request has timed out.');
-//           res.send(408);
-//       });
+app.use(timeout(120000));
+app.use(haltOnTimedout);
 
-//   next();
-// });
-
-
-function setConnectionTimeout(time) {
-  var delay = typeof time === 'string'
-    ? ms(time)
-    : Number(time || 5000);
-
-  return function (req, res, next) {
-    res.connection.setTimeout(delay);
-    next();
-  }
+function haltOnTimedout(req, res, next){
+   if (!req.timedout) next();
 }
+
+
+
 var defaultFolder = path.join(__dirname, 'tempFiles')
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -55,22 +45,6 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage })
 
-const apiTimeout = 100 * 1000;
-app.use((req, res, next) => {
-    // Set the timeout for all HTTP requests
-    req.setTimeout(apiTimeout, () => {
-        let err = new Error('Request Timeout');
-        err.status = 408;
-        next(err);
-    });
-    // Set the server response timeout for all HTTP requests
-    res.setTimeout(apiTimeout, () => {
-        let err = new Error('Service Unavailable');
-        err.status = 503;
-        next(err);
-    });
-    next();
-});
 
 app.post('/uploadFile', upload.single('sampleFile'), async (req, res, next) => {
   const thePath = path.join(__dirname ,'sites','local',req.body.username,req.body.pagename);
