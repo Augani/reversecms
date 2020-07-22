@@ -9,7 +9,7 @@
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "live": "concurrently --kill-others-on-fail \"npm run start\" \"npm run file-server\"",
     "dev:server": "cd client && npm run build && cd .. && nodemon app.js",
-    "start": "node app.js",
+    "start": "node --max-old-space-size=2000 app.js",
     "file-server": "npx http-server sites -p 4001"
   },
   "nodemonConfig": {
