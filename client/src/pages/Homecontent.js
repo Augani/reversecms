@@ -672,6 +672,12 @@ function MyDropzone(props) {
 
       return;
     }
+    if(props.type == "VideoChange"){
+      props.droppedVideo(acceptedFiles, props.user, props.page, props.site);
+      props.close();
+
+      return;
+    }
     setAdded(true);
     props.upload(acceptedFiles, props.user, props.site);
     props.close();
@@ -749,6 +755,15 @@ function EditReadyT(props) {
     let g = frame.contentWindow.document.getElementsByTagName("img");
     let p = frame.contentWindow.document.getElementsByTagName("p");
     let h = frame.contentWindow.document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    let vid = frame.contentWindow.document.getElementsByTagName("video");
+
+    for(let video of vid){
+      video.addEventListener('contextmenu', function(ev){
+        ev.preventDefault();
+        sessionStorage.setItem('Video', $(ev.target).attr('id'));
+        $('#GetVideos').trigger('click');
+      })
+    }
 
     for(let par of p){
      par.addEventListener('contextmenu', function(ev) {
@@ -892,6 +907,53 @@ function EditReadyT(props) {
    
   })
 
+  const videoDrop = (files, user, page, site)=>{
+      let id = sessionStorage.getItem('Video');
+      let src = $("#editableIframe").contents().find(`#${id}`).children('source')[0].getAttribute('src');
+      var ar = src.split('/')
+      ar.splice(ar.length-1)
+      var d = ar.join("/");
+      let path = d;
+      var params = {
+        user,
+        page,
+        name: files[0].name,
+        src,
+        path,
+        site: props.site
+      };
+      const uploader = new HugeUploader({ endpoint: '/video',chunkSize:1 , file: files[0], postParams:params});
+  
+      // subscribe to events
+      $('#fileLoader').trigger('click');
+      uploader.on('error', (err) => {
+        console.error('Something bad happened', err.detail);
+      });
+      
+      uploader.on('progress', (progress) => {
+        
+          $('#loaderProgress').text(progress.detail)
+          if(progress.detail == 100){
+            toaster.notify('Please wait, Changing video source')
+            setTimeout(()=>{
+              let frame= document.getElementById('editableIframe');
+              let vida = frame.contentWindow.document.getElementById(id);
+              vida.src = path+"/"+params.name;
+              vida.load();
+              vida.play();
+              // $("#editableIframe").contents().find(`#${id}`).children('source')[0].setAttribute('src',path+"/"+params.name)
+            },3000)
+          }
+      });
+      
+      uploader.on('finish', () => {
+      
+          toaster.success('Video has finished uploading');
+          // toaster.success('Woohoo!!!\n Site uploaded successfully');
+          // toaster.notify('Go ahead and edit')
+      });
+  }
+
   const ImageDrop = (files)=>{
     
     if (FileReader && files && files.length) {
@@ -989,10 +1051,42 @@ function EditReadyT(props) {
                   </Pane>
                 )}
               </Component>
+              <Component
+                initialState={{
+                isShown: false,
+                isLoading: false
+              }}
+             
+                didUpdate={({state, setState}) => {}}>
+                {({state, setState}) => (
+                  <Pane>
+                    <Dialog
+                      isShown={state.isShown}
+                      title='Video Uploader'
+                      width={500}
+                      hasFooter={false}
+                      onCloseComplete={() => setState({isShown: false, isLoading: false})}
+                      isConfirmLoading={state.isLoading}
+                      onConfirm={() => {
+                      setState({isLoading: true});
+                      setState({isShown: false});
+                    }}
+                      confirmLabel={state.isLoading
+                      ? 'Changing...'
+                      : 'Change Image'}>
+                       <MyDropzone user={props.log} site={site} page={currentPage} type="VideoChange" close={()=>setState({isShown: false})} droppedVideo={videoDrop}/>
+                       {/* <DropImage/> */}
+                    </Dialog>
+                 
+                    <button id="GetVideos" onClick={() => setState({isShown: true})}>
+                    </button>
+                  </Pane>
+                )}
+              </Component>
         <div className="w-1/6 h-full flex flex-col items-center">
           <h5>Pages</h5>
           <div className="overflow-y-scroll w-full  flex flex-col px-4">
-            {filtered.map((item) => (<Buttons set={setupSite} data={item}/>))}
+            {filtered.map((item) => (<Buttons set={setupSite} active={currentPage == item} data={item}/>))}
           </div>
         </div>
         <iframe ref={iframeRef} id="editableIframe" className="w-5/6 h-full" src={site}></iframe>
@@ -1026,16 +1120,27 @@ function EditReadyT(props) {
 }
 
 function Buttons(prop) {
+  if(prop.active){
+    return (
+      <button
+        onClick={() => prop.set(prop.data)}
+        className='bg-red-800  mb-4 hover:bg-red-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline'
+        type='button'>
+        {prop
+          .data
+          .split('.')[0]}
+      </button>
+    )
+  }
   return (
     <button
       onClick={() => prop.set(prop.data)}
-      className='bg-green-500  mb-4 hover:bg-red-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline'
+      className='bg-gray-700  mb-4 hover:bg-red-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline'
       type='button'>
       {prop
         .data
         .split('.')[0]}
     </button>
-
   )
 }
 
