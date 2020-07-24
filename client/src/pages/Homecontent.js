@@ -373,7 +373,7 @@ function TileR(prop) {
      <div className="w-full flex flex-row-reverse">
      <button
           onClick={Push}
-          className='bg-green-500 mx-4  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-gray-500 mx-4  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
           type='button'>
           Publish Site
         </button>
@@ -716,7 +716,7 @@ function MyDropzone(props) {
         isDragActive ?
           <p>Drop the files here ...</p> :
           <div className="w-full h-full flex flex-col items-center">
-          <p className="text-center ">Drag and drop images here or click to upload an image.</p>
+          <p className="text-center ">Drag and drop files here or click to upload a file.</p>
           </div>
       }
     </div>
@@ -1005,7 +1005,7 @@ function EditReadyT(props) {
         </button> */}
         <button
           onClick={Publish}
-          className='bg-green-500 mr-3  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-gray-500 mr-3  mb-4 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
           type='button'>
           Save
         </button>
